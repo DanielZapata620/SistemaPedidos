@@ -1,0 +1,34 @@
+<main class="detail-shell">
+  <nav class="topbar">
+    <button type="button" (click)="back()"><i class="fa-solid fa-arrow-left"></i> Agregar mas productos</button>
+    <strong>Detalle del pedido</strong>
+  </nav>
+
+  <section class="detail-layout">
+    <section class="detail-list">
+      <article *ngFor="let item of items">
+        <img [src]="imageUrl.resolve(item.product.imageUrl)" [alt]="item.product.name">
+        <div>
+          <b>{{ item.product.name }}</b>
+          <p>{{ item.quantity }} x ${{ item.product.price }}</p>
+        </div>
+        <strong>${{ item.product.price * item.quantity }}</strong>
+      </article>
+    </section>
+
+    <aside class="detail-summary">
+      <h2>Resumen</h2>
+      <label>
+        Sucursal
+        <select [(ngModel)]="selectedBranchId">
+          <option *ngFor="let branch of branches" [ngValue]="branch.id">{{ branch.name }} - {{ branch.address }}</option>
+        </select>
+      </label>
+      <p>Recoger en tienda</p>
+      <b>Total: ${{ total }}</b>
+      <button type="button" class="primary" (click)="confirm()" [disabled]="items.length === 0 || selectedBranchId === 0">Confirmar pedido</button>
+      <button type="button" (click)="cancel()">Cancelar</button>
+      <p class="error" *ngIf="error">{{ error }}</p>
+    </aside>
+  </section>
+</main>

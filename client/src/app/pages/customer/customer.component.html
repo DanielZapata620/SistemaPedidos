@@ -1,0 +1,57 @@
+<main class="pos-layout">
+  <nav class="side-nav">
+    <button type="button" title="Catalogo"><i class="fa-solid fa-mug-saucer"></i></button>
+    <button type="button" title="Detalle del pedido" (click)="goToDetails()" [disabled]="cart.length === 0"><i class="fa-solid fa-receipt"></i></button>
+    <button type="button" title="Estado de pedidos" (click)="goToOrders()" [disabled]="orders.length === 0"><i class="fa-solid fa-box-open"></i></button>
+    <button type="button" title="Salir" (click)="auth.logout()"><i class="fa-solid fa-arrow-right-from-bracket"></i></button>
+  </nav>
+
+  <section class="areaProductos">
+    <section class="Catalago">
+    <article class="producto" *ngFor="let product of products" (click)="add(product)">
+      <img [src]="imageUrl.resolve(product.imageUrl)" [alt]="product.name">
+      <p class="Nombre">{{ product.name }}</p>
+      <p class="Precio">${{ product.price }}</p>
+      <p class="cantidad" *ngIf="getQuantity(product.id) > 0">{{ getQuantity(product.id) }}</p>
+    </article>
+    </section>
+  </section>
+
+  <aside class="panelVenta">
+    <section>
+      <h2>Pedido actual</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Producto</th>
+            <th>Cant</th>
+            <th>P.Unit</th>
+            <th>Total</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of cart">
+            <td>{{ item.product.name }}</td>
+            <td>{{ item.quantity }}</td>
+            <td>{{ item.product.price }}</td>
+            <td>{{ item.product.price * item.quantity }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="Venta">
+      <p>Total: ${{ total }}</p>
+      <p class="muted">Metodo: recoger en tienda y pagar al recoger.</p>
+      <div class="actions">
+        <button type="button" (click)="clear()" [disabled]="cart.length === 0">Cancelar</button>
+        <button type="button" class="primary" (click)="goToDetails()" [disabled]="cart.length === 0">Ver detalles del pedido</button>
+      </div>
+      <p class="success" *ngIf="lastOrder">
+        Pedido #{{ lastOrder.id }} enviado. Estado: {{ lastOrder.status }}.
+      </p>
+      <p class="error" *ngIf="error">{{ error }}</p>
+    </section>
+
+  </aside>
+</main>

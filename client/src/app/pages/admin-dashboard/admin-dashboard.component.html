@@ -1,0 +1,51 @@
+<main class="admin-shell">
+  <nav class="topbar">
+    <strong>Panel del negocio</strong>
+    <a routerLink="/admin/productos"><i class="fa-solid fa-mug-saucer"></i> Productos</a>
+    <a routerLink="/admin/pedidos"><i class="fa-solid fa-box-open"></i> Pedidos</a>
+    <button type="button" *ngIf="auth.user?.role === 'admin'" (click)="newBranch()"><i class="fa-solid fa-plus"></i> Agregar sucursal</button>
+    <button type="button" class="topbar-action" (click)="auth.logout()"><i class="fa-solid fa-arrow-right-from-bracket"></i> Salir</button>
+  </nav>
+
+  <section class="stats" *ngIf="dashboard">
+    <article>
+      <span><i class="fa-solid fa-mug-saucer"></i></span>
+      <p>Productos activos</p>
+      <b>{{ dashboard.totalProducts }}</b>
+    </article>
+    <article>
+      <span><i class="fa-solid fa-receipt"></i></span>
+      <p>Pedidos totales</p>
+      <b>{{ dashboard.totalOrders }}</b>
+    </article>
+    <article>
+      <span><i class="fa-solid fa-clock"></i></span>
+      <p>Pendientes</p>
+      <b>{{ dashboard.pendingOrders }}</b>
+    </article>
+    <article>
+      <span><i class="fa-solid fa-money-bill-wave"></i></span>
+      <p>Ventas</p>
+      <b>${{ dashboard.totalSales }}</b>
+    </article>
+  </section>
+
+  <section class="branch-form" *ngIf="showBranchForm && auth.user?.role === 'admin'">
+    <h2>{{ branchForm.id ? 'Modificar sucursal' : 'Agregar sucursal' }}</h2>
+    <input placeholder="Nombre" [(ngModel)]="branchForm.name">
+    <input placeholder="Direccion" [(ngModel)]="branchForm.address">
+    <input placeholder="Usuario" [(ngModel)]="branchForm.username">
+    <input placeholder="Contrasena" [(ngModel)]="branchForm.password" type="password">
+    <button type="button" class="primary" (click)="saveBranch()">Guardar sucursal</button>
+  </section>
+
+  <section class="branches" *ngIf="auth.user?.role === 'admin'">
+    <article *ngFor="let branch of branches">
+      <div>
+        <b>{{ branch.name }}</b>
+        <p>{{ branch.address }} - Usuario: {{ branch.username }}</p>
+      </div>
+      <button type="button" (click)="editBranch(branch)"><i class="fa-solid fa-pen"></i> Modificar sucursal</button>
+    </article>
+  </section>
+</main>

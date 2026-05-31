@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Página de Pago</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+</head>
+
+<body>
+
+  <nav>
+    <a href="index.html"><i class="fa-solid fa-cash-register"></i></a>
+    <a href="historial.html"><i class="fa-solid fa-clock-rotate-left"></i></a>
+  </nav>
+
+  <section class="areaPago">
+    <h2>Selecciona un método de pago</h2>
+    <div>
+      <input type="checkbox" id="guardarVenta" class="ckeckRedondo">
+      <p>¿Desea guardar el resumen de venta en el historial ? </p>
+    </div>
+    <a id="pagoEfectivo"><i class="fa-solid fa-money-bill-wave"></i> Efectivo</a>
+    <a id="pagoTarjeta"><i class="fa-solid fa-credit-card"></i> Tarjeta</a>
+    <a id="pagoTransferencia"><i class="fa-solid fa-money-check-dollar"></i> Transferencia</a>
+
+
+  </section>
+
+
+  <section class="panelVenta">
+
+    <section>
+      <h2>Venta Actual</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Producto</th>
+            <th>Cant</th>
+            <th>P.Unit</th>
+            <th>Total</th>
+          </tr>
+        </thead>
+        <tbody>
+
+        </tbody>
+      </table>
+
+
+    </section>
+
+    <section class="Venta">
+      <p class="TotalVenta">Total :</p>
+    </section>
+
+
+
+  </section>
+
+  <div class="overlay" hidden>
+    <div class="modal" id="efectivoModal">
+      <a id="cerrarModalEfectivo"><i class="fa-solid fa-arrow-left"></i></a>
+      <h3>Pagar en Efectivo</h3>
+
+      <div class="seccionInputCantidad">
+        <input id="cantidad" readonly placeholder="Ingrese monto recibido" />
+        <span id="limpiarInput" class="btn-clear">✕</span>
+      </div>
+
+      <div class="pad-numerico">
+        <button>1</button>
+        <button>2</button>
+        <button>3</button>
+        <button>4</button>
+        <button>5</button>
+        <button>6</button>
+        <button>7</button>
+        <button>8</button>
+        <button>9</button>
+        <button>.</button>
+        <button>0</button>
+        <button>00</button>
+      </div>
+
+      <p class="efectivoModal" id="monto">Total a pagar: $0</p>
+
+      <p class="efectivoModal" id="Cambio">Cambio: $0</p>
+      <b id="error"></b>
+
+      <button id="procesarVenta" disabled>Procesar Venta</button>
+    </div>
+  </div>
+
+  <div class="overlay" hidden>
+    <div class="modal" id="tarjetaModal">
+      <h3>Pago con Tarjeta </h3>
+      <p id="mensajeTarjeta">Leyendo tarjeta...</p>
+    </div>
+  </div>
+
+  <div class="overlay" hidden>
+    <div class="modal" id="transferenciaModal" hidden>
+      <a id="cerrarModalTransferencia"><i class="fa-solid fa-arrow-left"></i></a>
+      <h3>Pagar por Transferencia</h3>
+      <p>Realiza tu pago a la siguiente cuenta:</p>
+      <p><b>Banco:</b> BBVA</p>
+      <p><b>Cuenta CLABE:</b> 012345678901234567</p>
+      <p><b>Nombre del beneficiario:</b> Daniel Hernández</p>
+      <p class="nota">Una vez realizada la transferencia, presiona el botón para confirmar la venta.</p>
+
+      <button id="procesarTransferencia">Procesar Venta</button>
+    </div>
+  </div>
+
+  <script src="pago.js"></script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,22 @@
+<main class="admin-shell">
+  <nav class="topbar">
+    <a routerLink="/cliente"><i class="fa-solid fa-mug-saucer"></i> Catalogo</a>
+    <strong>Mis pedidos</strong>
+  </nav>
+
+  <section class="orders">
+    <article *ngFor="let order of orders">
+      <header>
+        <div>
+          <b>Pedido #{{ order.id }}</b>
+          <p>{{ order.branchName }} - {{ order.branchAddress }}</p>
+        </div>
+        <span>{{ statusText(order.status) }}</span>
+      </header>
+      <ul>
+        <li *ngFor="let item of order.items">{{ item.productName }} x{{ item.quantity }} - ${{ item.subtotal }}</li>
+      </ul>
+      <p>Total: ${{ order.total }}</p>
+    </article>
+  </section>
+</main>

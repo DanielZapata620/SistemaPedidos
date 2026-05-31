@@ -1,0 +1,37 @@
+<main class="admin-shell">
+  <nav class="topbar">
+    <a routerLink="/admin"><i class="fa-solid fa-house"></i> Dashboard</a>
+    <a routerLink="/admin/pedidos"><i class="fa-solid fa-box-open"></i> Pedidos</a>
+  </nav>
+
+  <section class="admin-layout">
+    <form class="form" (ngSubmit)="save()" #productForm="ngForm">
+      <h2>{{ editing ? 'Editar producto' : 'Agregar producto' }}</h2>
+      <div class="product-form-grid">
+        <label>Nombre <input name="name" [(ngModel)]="form.name" maxlength="80" required></label>
+        <label>Descripcion <input name="description" [(ngModel)]="form.description" maxlength="250"></label>
+        <label>Precio <input name="price" type="number" [(ngModel)]="form.price" min="1" required></label>
+        <label>
+          Imagen
+          <input #imageInput type="file" accept="image/png,image/jpeg,image/webp" (change)="selectImage($event)">
+          <span class="file-hint">{{ selectedImageName || (editing ? 'Conservar imagen actual' : 'Selecciona una imagen') }}</span>
+        </label>
+        <button class="primary" type="submit" [disabled]="productForm.invalid"><i class="fa-solid fa-floppy-disk"></i> Guardar</button>
+        <button type="button" (click)="cancel()"><i class="fa-solid fa-xmark"></i> Limpiar</button>
+      </div>
+      <p class="error" *ngIf="error">{{ error }}</p>
+    </form>
+
+    <section class="product-table">
+      <article *ngFor="let product of products">
+        <img [src]="imageUrl.resolve(product.imageUrl)" [alt]="product.name">
+        <div>
+          <b>{{ product.name }}</b>
+          <p>${{ product.price }} · {{ product.description }}</p>
+        </div>
+        <button type="button" (click)="edit(product)"><i class="fa-solid fa-pen"></i> Editar</button>
+        <button type="button" (click)="delete(product.id)"><i class="fa-solid fa-trash"></i> Eliminar</button>
+      </article>
+    </section>
+  </section>
+</main>

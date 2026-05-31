@@ -1,0 +1,54 @@
+<main class="auth-shell">
+  <section class="role-modal" *ngIf="!roleSelected">
+    <h1>¿Como vas a entrar?</h1>
+    <p class="muted">Elige el tipo de cuenta para mostrarte la pantalla correcta.</p>
+    <div class="role-choice">
+      <button type="button" (click)="selectRole('cliente')">
+        <strong>Cliente</strong>
+        <span>Hacer pedidos para recoger en tienda</span>
+      </button>
+      <button type="button" (click)="selectRole('admin')">
+        <strong>Negocio</strong>
+        <span>Administrar productos y pedidos</span>
+      </button>
+    </div>
+  </section>
+
+  <section class="auth-panel" *ngIf="roleSelected">
+    <button class="back-link" type="button" (click)="changeRole()">Cambiar tipo de cuenta</button>
+    <h1>Plataforma de pedidos</h1>
+    <p class="muted">Entrando como {{ role === 'admin' ? 'negocio' : 'cliente' }}.</p>
+
+    <div class="tabs">
+      <button type="button" [class.active]="mode === 'login'" (click)="mode = 'login'">Login</button>
+      <button type="button" *ngIf="role === 'cliente'" [class.active]="mode === 'register'" (click)="mode = 'register'">Registro</button>
+    </div>
+
+    <form (ngSubmit)="submit()" #form="ngForm" class="form">
+      <label *ngIf="mode === 'register' && role === 'cliente'">
+        Nombre
+        <input name="name" [(ngModel)]="name" maxlength="80" required>
+      </label>
+
+      <label>
+        {{ role === 'admin' ? 'Correo o usuario de sucursal' : 'Correo' }}
+        <input name="email" [type]="role === 'admin' ? 'text' : 'email'" [(ngModel)]="email" required>
+      </label>
+
+      <label>
+        Contrasena
+        <input name="password" type="password" [(ngModel)]="password" minlength="6" required>
+      </label>
+
+      <button class="primary" type="submit" [disabled]="form.invalid || loading">
+        {{ loading ? 'Procesando...' : (mode === 'login' ? 'Entrar' : 'Crear cuenta') }}
+      </button>
+    </form>
+
+    <div class="google-box" *ngIf="role === 'cliente'">
+      <div id="googleButton"></div>
+    </div>
+
+    <p class="error" *ngIf="error">{{ error }}</p>
+  </section>
+</main>

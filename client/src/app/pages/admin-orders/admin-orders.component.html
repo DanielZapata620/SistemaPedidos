@@ -1,0 +1,26 @@
+<main class="admin-shell">
+  <nav class="topbar">
+    <a routerLink="/admin"><i class="fa-solid fa-house"></i> Dashboard</a>
+    <a routerLink="/admin/productos"><i class="fa-solid fa-mug-saucer"></i> Productos</a>
+  </nav>
+
+  <section class="orders">
+    <article *ngFor="let order of orders">
+      <header>
+        <div>
+          <b>Pedido #{{ order.id }}</b>
+          <p>{{ order.customerName }} - {{ order.customerEmail }} - {{ order.branchName }}</p>
+        </div>
+        <span>{{ statusText(order.status) }}</span>
+      </header>
+      <ul>
+        <li *ngFor="let item of order.items">{{ item.productName }} x{{ item.quantity }} - ${{ item.subtotal }}</li>
+      </ul>
+      <p>Total: ${{ order.total }} - Recoger en tienda - Pago en tienda</p>
+      <div class="actions">
+        <button type="button" (click)="setStatus(order, 'en preparacion')">En preparacion</button>
+        <button type="button" class="primary" (click)="setStatus(order, 'listo para recoger')">Listo para recoger</button>
+      </div>
+    </article>
+  </section>
+</main>

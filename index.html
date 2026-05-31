@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Punto de Venta</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+</head>
+
+<body>
+
+
+  <nav>
+    <a href="index.html"><i class="fa-solid fa-cash-register"></i></a>
+    <a href="historial.html"><i class="fa-solid fa-clock-rotate-left"></i></a>
+  </nav>
+
+
+  <section class="areaProductos">
+
+    <section class="Catalago">
+      <div class="producto" id="art01">
+        <img src="img/art01.png">
+        <p class="Nombre">Café Americano</p>
+        <p class="Precio">$15</p>
+        <p class="cantidad"></p>
+      </div>
+
+      <div class="producto" id="art02">
+        <img src="img/art02.png">
+        <p class="Nombre">Cappuccino</p>
+        <p class="Precio">$25</p>
+        <p class="cantidad"></p>
+      </div>
+
+      <div class="producto" id="art03">
+        <img src="img/art03.png">
+        <p class="Nombre">Latte Frío</p>
+        <p class="Precio">$28</p>
+        <p class="cantidad"></p>
+      </div>
+
+      <div class="producto" id="art04">
+        <img src="img/art04.png">
+        <p class="Nombre">Chocolate Caliente</p>
+        <p class="Precio">$22</p>
+        <p class="cantidad"></p>
+      </div>
+
+      <div class="producto" id="art05">
+        <img src="img/art05.png">
+        <p class="Nombre">Malteada de Moka</p>
+        <p class="Precio">$20</p>
+        <p class="cantidad"></p>
+      </div>
+
+      <div class="producto" id="art06">
+        <img src="img/art06.png">
+        <p class="Nombre">Muffin de Arándano</p>
+        <p class="Precio">$18</p>
+        <p class="cantidad"></p>
+      </div>
+
+      <div class="producto" id="art07">
+        <img src="img/art07.png">
+        <p class="Nombre">Croissant</p>
+        <p class="Precio">$15</p>
+        <p class="cantidad"></p>
+      </div>
+
+      <div class="producto" id="art08">
+        <img src="img/art08.png">
+        <p class="Nombre">Galleta con Chispas</p>
+        <p class="Precio">$10</p>
+        <p class="cantidad"></p>
+      </div>
+
+      <div class="producto" id="art09">
+        <img src="img/art09.png">
+        <p class="Nombre">Smoothie de Fresa</p>
+        <p class="Precio">$25</p>
+        <p class="cantidad"></p>
+      </div>
+
+      <div class="producto" id="art10">
+        <img src="img/art10.png">
+        <p class="Nombre">Sándwich de Jamón y Queso</p>
+        <p class="Precio">$30</p>
+        <p class="cantidad"></p>
+      </div>
+
+      <div class="producto" id="art11">
+        <img src="img/art11.png">
+        <p class="Nombre">Frappuccino Caramel</p>
+        <p class="Precio">$32</p>
+        <p class="cantidad"></p>
+      </div>
+
+      <div class="producto" id="art12">
+        <img src="img/art12.png">
+        <p class="Nombre">Matcha Latte</p>
+        <p class="Precio">$30</p>
+        <p class="cantidad"></p>
+      </div>
+
+      <div class="producto" id="art13">
+        <img src="img/art13.png">
+        <p class="Nombre">Donut Glaseada</p>
+        <p class="Precio">$12</p>
+        <p class="cantidad"></p>
+      </div>
+
+      <div class="producto" id="art14">
+        <img src="img/art14.png">
+        <p class="Nombre">Pumpkin Spice Latte</p>
+        <p class="Precio">$35</p>
+        <p class="cantidad"></p>
+      </div>
+
+      <div class="producto" id="art15">
+        <img src="img/art15.png">
+        <p class="Nombre">Bagel con Queso Crema</p>
+        <p class="Precio">$22</p>
+        <p class="cantidad"></p>
+      </div>
+
+      <div class="producto" id="art16">
+        <img src="img/art16.png">
+        <p class="Nombre">Té Helado de Limón</p>
+        <p class="Precio">$20</p>
+        <p class="cantidad"></p>
+      </div>
+
+
+    </section>
+  </section>
+
+
+  <section class="panelVenta">
+
+    <section>
+      <h2>Venta Actual</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Producto</th>
+            <th>Cant</th>
+            <th>P.Unit</th>
+            <th>Total</th>
+          </tr>
+        </thead>
+        <tbody>
+
+        </tbody>
+      </table>
+
+
+    </section>
+
+    <section class="Venta">
+      <p class="TotalVenta">Total : $ 0</p>
+      <div class="botones">
+        <a class="btnCancelar">Cancelar</a>
+        <a class="btnRealizarVenta" href="Pago.html">Pagar</a>
+      </div>
+
+    </section>
+
+  </section>
+
+  <div class="overlay" hidden>
+    <div class="modal" id="cancelarModal" hidden>
+      <a id="cerrarModalCancelar"><i class="fa-solid fa-arrow-left"></i></a>
+      <h3>Cancelar Venta</h3>
+      <p>Ingrese código de acceso:</p>
+
+      <!-- el codigo para eliminar la venta es : 123 -->
+
+      <div class="seccionInputCantidad">
+        <input id="cantidad" type="password" readonly placeholder="Codigo..." />
+        <span id="limpiarInput" class="btn-clear">✕</span>
+      </div>
+
+      <div class="pad-numerico">
+        <button>1</button>
+        <button>2</button>
+        <button>3</button>
+        <button>4</button>
+        <button>5</button>
+        <button>6</button>
+        <button>7</button>
+        <button>8</button>
+        <button>9</button>
+      </div>
+
+
+      <b id="errorModal"></b>
+      <button id="AceptarCancelacion">Aceptar</button>
+    </div>
+  </div>
+
+
+  <script src="venta.js"></script>
+
+
+</body>
+
+</html>
